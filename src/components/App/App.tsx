@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import ReactPaginateComponent from 'react-paginate'
 import { Toaster, toast } from 'react-hot-toast'
@@ -31,6 +31,7 @@ export default function App() {
     queryKey: ['movies', query, page],
     queryFn: () => fetchMovies(query, page),
     enabled: query !== '',
+    placeholderData: keepPreviousData,
   })
 
   const movies = data?.results ?? []
